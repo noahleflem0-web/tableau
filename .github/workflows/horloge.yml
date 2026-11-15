@@ -1,0 +1,46 @@
+# Horloge de l'usine : les horaires planifiés de GitHub ne se déclenchent pas sur ce compte.
+# Ce workflow tourne ~5 h 50, regarde l'heure de Paris chaque minute et lance les passages de l'usine,
+# puis se relance lui-même (workflow_dispatch avec le GITHUB_TOKEN, qui est autorisé à le faire).
+# Dépôt public : minutes gratuites. Pour arrêter l'horloge : annuler le passage en cours dans l'onglet Actions.
+name: Horloge
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: horloge
+  cancel-in-progress: false
+
+permissions:
+  actions: write
+
+jobs:
+  tic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    env:
+      TOKEN: ${{ secrets.DECLENCHEUR_TOKEN }}
+      SELF_TOKEN: ${{ github.token }}
+    steps:
+      - name: Tourner
+        run: |
+          api=https://api.github.com/repos/noahleflem0-web/usine-tiktok/actions/workflows
+          lancer() {
+            code=$(curl -s -o /dev/null -w '%{http_code}' -X POST -H "Authorization: Bearer $TOKEN" -H 'Accept: application/vnd.github+json' "$api/$1/dispatches" -d "$2")
+            echo "$(TZ=Europe/Paris date '+%F %H:%M') → $1 $2 : HTTP $code"
+          }
+          fin=$((SECONDS + 345 * 60)); fait=""
+          while [ $SECONDS -lt $fin ]; do
+            h=$(TZ=Europe/Paris date +%H); m=$(TZ=Europe/Paris date +%M); cle=$(TZ=Europe/Paris date +%F-%H:%M)
+            if [ "$cle" != "$fait" ]; then
+              if [ "$m" = "02" ] && [ "$((10#$h))" -ge 6 ] && [ "$((10#$h))" -le 22 ]; then lancer usine.yml '{"ref":"main","inputs":{"task":"publish"}}'; fait=$cle; fi
+              if [ "$h:$m" = "06:20" ]; then lancer usine.yml '{"ref":"main","inputs":{"task":"stats"}}'; fait=$cle; fi
+              if [ "$h:$m" = "05:15" ] || [ "$h:$m" = "17:15" ]; then lancer fabrication.yml '{"ref":"main"}'; fait=$cle; fi
+            fi
+            sleep 20
+          done
+      - name: Se relancer
+        if: always()
+        run: |
+          curl -s -o /dev/null -w 'Relance : HTTP %{http_code}\n' -X POST -H "Authorization: Bearer $SELF_TOKEN" -H 'Accept: application/vnd.github+json' \
+            "https://api.github.com/repos/noahleflem0-web/tableau/actions/workflows/horloge.yml/dispatches" -d '{"ref":"main"}'
