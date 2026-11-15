@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Usine">
+<title>Tableau de l'usine</title>
+<style>
+:root{--bg:#f4f5f8;--card:#fff;--fg:#1d1f2b;--mut:#6b7080;--line:#e3e5ec;--ok:#1f8a4c;--okb:#e3f5ea;--bad:#c62f32;--badb:#fde6e6;--wait:#9a6a00;--waitb:#fff3d6;--acc:#2f6fd6}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1117;--card:#181b24;--fg:#eceef4;--mut:#9aa0b0;--line:#2a2e3a;--ok:#5fd394;--okb:#163325;--bad:#ff7b7b;--badb:#3a1b1d;--wait:#ffcf6b;--waitb:#3a2f14;--acc:#7aa8ff}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:max(16px,env(safe-area-inset-top)) 16px 40px}
+main{max-width:760px;margin:0 auto}h1{font-size:24px;margin:4px 0 2px}h2{font-size:18px;margin:28px 0 10px}h3{font-size:16px;margin:0}h4{margin:14px 0 6px}
+.muted{color:var(--mut);font-size:13px;display:block}.sum{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0}
+.sum div,.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px}.sum .k{font-size:22px;font-weight:700;display:block}
+.card{margin-bottom:10px}.card header{display:flex;justify-content:space-between;align-items:center;gap:8px}.spark{color:var(--acc);flex:none}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:10px}.kpis .k{display:block;font-weight:700;font-size:16px}.kpis .l{font-size:11px;color:var(--mut)}
+.up{color:var(--ok)}.down{color:var(--bad)}
+.rows{list-style:none;margin:0;padding:0;background:var(--card);border:1px solid var(--line);border-radius:14px}
+.rows li{display:flex;justify-content:space-between;gap:10px;padding:10px 12px;border-top:1px solid var(--line)}.rows li:first-child{border-top:0}.right{text-align:right;flex:none}
+.pill{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px}.ok{background:var(--okb);color:var(--ok)}.bad{background:var(--badb);color:var(--bad)}.wait{background:var(--waitb);color:var(--wait)}.mute{background:var(--line);color:var(--mut)}
+.bad-t{color:var(--bad);font-size:12px}
+.tw{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:14px}table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:8px 10px;border-top:1px solid var(--line);text-align:left;vertical-align:top}thead th{border-top:0;color:var(--mut);font-weight:600}
+.report{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px 14px}code{font-size:12px}
+@media (max-width:520px){.kpis{grid-template-columns:repeat(3,1fr)}}
+</style></head><body><main>
+<h1>Tableau de l'usine</h1><span class="muted">Mis à jour dim. 15/11 02:14 · 6 comptes</span>
+<div class="sum"><div><span class="k">810</span><span class="muted">abonnés au total</span></div><div><span class="k">0</span><span class="muted">vidéos publiées</span></div><div><span class="k">4</span><span class="muted">en attente</span></div></div>
+<h2>Les comptes</h2><article class="card">
+      <header><div><h3>Nuit Blanche</h3><p class="muted">@archivesstories</p></div></header>
+      <div class="kpis">
+        <div><span class="k">236</span><span class="l">abonnés</span></div>
+        <div><span class="k ">0</span><span class="l">sur 7 jours</span></div>
+        <div><span class="k">0</span><span class="l">publiées</span></div>
+        <div><span class="k">—</span><span class="l">vues moy.</span></div>
+        <div><span class="k">1</span><span class="l">en file</span></div>
+      </div>
+    </article><article class="card">
+      <header><div><h3>Ligne Rouge</h3><p class="muted">@marie.jaa</p></div></header>
+      <div class="kpis">
+        <div><span class="k">518</span><span class="l">abonnés</span></div>
+        <div><span class="k ">0</span><span class="l">sur 7 jours</span></div>
+        <div><span class="k">0</span><span class="l">publiées</span></div>
+        <div><span class="k">—</span><span class="l">vues moy.</span></div>
+        <div><span class="k">1</span><span class="l">en file</span></div>
+      </div>
+    </article><article class="card">
+      <header><div><h3>Mais Pourquoi</h3><p class="muted">@pqetcomment</p></div></header>
+      <div class="kpis">
+        <div><span class="k">35</span><span class="l">abonnés</span></div>
+        <div><span class="k ">0</span><span class="l">sur 7 jours</span></div>
+        <div><span class="k">0</span><span class="l">publiées</span></div>
+        <div><span class="k">—</span><span class="l">vues moy.</span></div>
+        <div><span class="k">1</span><span class="l">en file</span></div>
+      </div>
+    </article><article class="card">
+      <header><div><h3>Ça Coûte Combien</h3><p class="muted">@lesavant.clair</p></div></header>
+      <div class="kpis">
+        <div><span class="k">21</span><span class="l">abonnés</span></div>
+        <div><span class="k ">0</span><span class="l">sur 7 jours</span></div>
+        <div><span class="k">0</span><span class="l">publiées</span></div>
+        <div><span class="k">—</span><span class="l">vues moy.</span></div>
+        <div><span class="k">0</span><span class="l">en file</span></div>
+      </div>
+    </article><article class="card">
+      <header><div><h3>Ça Rapporte Quoi</h3><p class="muted">@pianoman085</p></div></header>
+      <div class="kpis">
+        <div><span class="k">—</span><span class="l">abonnés</span></div>
+        <div><span class="k ">—</span><span class="l">sur 7 jours</span></div>
+        <div><span class="k">0</span><span class="l">publiées</span></div>
+        <div><span class="k">—</span><span class="l">vues moy.</span></div>
+        <div><span class="k">1</span><span class="l">en file</span></div>
+      </div>
+    </article><article class="card">
+      <header><div><h3>Tech Sans Bug</h3><p class="muted">@lebbzero</p></div></header>
+      <div class="kpis">
+        <div><span class="k">—</span><span class="l">abonnés</span></div>
+        <div><span class="k ">—</span><span class="l">sur 7 jours</span></div>
+        <div><span class="k">0</span><span class="l">publiées</span></div>
+        <div><span class="k">—</span><span class="l">vues moy.</span></div>
+        <div><span class="k">0</span><span class="l">en file</span></div>
+      </div>
+    </article>
+<h2>Vidéos en attente</h2><ul class="rows"><li><div><strong>Le vrai prix de ton pop-corn</strong><span class="muted">Ça Rapporte Quoi</span></div><div class="right"><span class="pill wait">En attente</span><span class="muted">dim. 15/11 07:00</span></div></li><li><div><strong>Pourquoi tu as le hoquet ?</strong><span class="muted">Mais Pourquoi</span></div><div class="right"><span class="pill wait">En attente</span><span class="muted">dim. 15/11 11:00</span></div></li><li><div><strong>Feu de poêle : pourquoi l&#39;eau rend tout pire</strong><span class="muted">Nuit Blanche</span></div><div class="right"><span class="pill wait">En attente</span><span class="muted">dim. 15/11 18:00</span></div></li><li><div><strong>Pourquoi le faux SMS du livreur marche si bien ?</strong><span class="muted">Ligne Rouge</span></div><div class="right"><span class="pill wait">En attente</span><span class="muted">mar. 17/11 20:00</span></div></li></ul>
+<h2>Relevés des vidéos</h2><p class="muted">Pas encore de vidéo publiée avec des statistiques.</p>
+<h2>Stratégie</h2><div class="report"><h2>Stratégie Virale — 2026-11-15</h2><h3>Pas encore assez de données</h3><ul><li><strong>Nuit Blanche</strong> (@archivesstories) : 0 vidéo(s) avec statistiques, il en faut 3.</li><li><strong>Ligne Rouge</strong> (@marie.jaa) : 0 vidéo(s) avec statistiques, il en faut 3.</li><li><strong>Mais Pourquoi</strong> (@pqetcomment) : 0 vidéo(s) avec statistiques, il en faut 3.</li><li><strong>Ça Coûte Combien</strong> (@lesavant.clair) : 0 vidéo(s) avec statistiques, il en faut 3.</li><li><strong>Ça Rapporte Quoi</strong> (@pianoman085) : 0 vidéo(s) avec statistiques, il en faut 3.</li><li><strong>Tech Sans Bug</strong> (@lebbzero) : 0 vidéo(s) avec statistiques, il en faut 3.</li></ul></div>
+<h2>Dernières tâches</h2><ul class="rows"><li><div><strong>stats</strong><span class="muted">Ça Coûte Combien</span></div><div class="right"><span class="pill ok">OK</span><span class="muted">sam. 14/11 22:28</span></div></li><li><div><strong>stats</strong><span class="muted">Mais Pourquoi</span></div><div class="right"><span class="pill ok">OK</span><span class="muted">sam. 14/11 22:28</span></div></li><li><div><strong>stats</strong><span class="muted">Ligne Rouge</span></div><div class="right"><span class="pill ok">OK</span><span class="muted">sam. 14/11 22:28</span></div></li><li><div><strong>stats</strong><span class="muted">Nuit Blanche</span></div><div class="right"><span class="pill ok">OK</span><span class="muted">sam. 14/11 22:28</span></div></li><li><div><strong>stats</strong><span class="muted">Ça Coûte Combien</span></div><div class="right"><span class="pill bad">Erreur</span><span class="muted">sam. 14/11 21:40</span></div></li><li><div><strong>stats</strong><span class="muted">Mais Pourquoi</span></div><div class="right"><span class="pill bad">Erreur</span><span class="muted">sam. 14/11 21:40</span></div></li><li><div><strong>stats</strong><span class="muted">Ligne Rouge</span></div><div class="right"><span class="pill bad">Erreur</span><span class="muted">sam. 14/11 21:40</span></div></li><li><div><strong>stats</strong><span class="muted">Nuit Blanche</span></div><div class="right"><span class="pill bad">Erreur</span><span class="muted">sam. 14/11 21:40</span></div></li><li><div><strong>stats</strong><span class="muted">Ça Coûte Combien</span></div><div class="right"><span class="pill bad">Erreur</span><span class="muted">sam. 14/11 21:35</span></div></li><li><div><strong>stats</strong><span class="muted">Mais Pourquoi</span></div><div class="right"><span class="pill bad">Erreur</span><span class="muted">sam. 14/11 21:35</span></div></li><li><div><strong>stats</strong><span class="muted">Ligne Rouge</span></div><div class="right"><span class="pill bad">Erreur</span><span class="muted">sam. 14/11 21:35</span></div></li><li><div><strong>stats</strong><span class="muted">Nuit Blanche</span></div><div class="right"><span class="pill bad">Erreur</span><span class="muted">sam. 14/11 21:35</span></div></li><li><div><strong>stats</strong><span class="muted">Ça Coûte Combien</span></div><div class="right"><span class="pill bad">Erreur</span><span class="muted">sam. 14/11 21:33</span></div></li><li><div><strong>stats</strong><span class="muted">Mais Pourquoi</span></div><div class="right"><span class="pill bad">Erreur</span><span class="muted">sam. 14/11 21:33</span></div></li><li><div><strong>stats</strong><span class="muted">Ligne Rouge</span></div><div class="right"><span class="pill bad">Erreur</span><span class="muted">sam. 14/11 21:33</span></div></li></ul>
+</main></body></html>
