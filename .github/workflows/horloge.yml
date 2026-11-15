@@ -35,7 +35,7 @@ jobs:
             if [ "$cle" != "$fait" ]; then
               if [ "$m" = "02" ] && [ "$((10#$h))" -ge 6 ] && [ "$((10#$h))" -le 22 ]; then lancer usine.yml '{"ref":"main","inputs":{"task":"publish"}}'; fait=$cle; fi
               if [ "$h:$m" = "06:20" ]; then lancer usine.yml '{"ref":"main","inputs":{"task":"stats"}}'; fait=$cle; fi
-              if [ "$h:$m" = "05:15" ] || [ "$h:$m" = "17:15" ]; then lancer fabrication.yml '{"ref":"main"}'; fait=$cle; fi
+              if [ "$m" = "15" ] && { [ "$h" = "05" ] || [ "$h" = "11" ] || [ "$h" = "17" ] || [ "$h" = "23" ]; }; then lancer fabrication.yml '{"ref":"main"}'; fait=$cle; fi
             fi
             sleep 20
           done
