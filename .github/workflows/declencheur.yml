@@ -1,0 +1,42 @@
+# Lance les passages de l'usine (dépôt privé usine-tiktok) aux bonnes heures.
+# Les horaires planifiés ne se déclenchaient pas dans le dépôt privé ; ce dépôt public (minutes illimitées) s'en charge.
+# Secret requis : DECLENCHEUR_TOKEN (jeton GitHub limité à usine-tiktok, droit « Actions : Read and write »).
+name: Declencheur
+
+on:
+  schedule:
+    - cron: '2 5-20 * * *'   # publication : toutes les heures (≈ 6 h-22 h à Paris)
+    - cron: '20 5 * * *'     # statistiques
+    - cron: '15 4,16 * * *'  # fabrication
+  workflow_dispatch:
+    inputs:
+      quoi:
+        type: choice
+        options: [publication, statistiques, fabrication]
+        default: publication
+
+jobs:
+  lancer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Lancer le passage
+        env:
+          TOKEN: ${{ secrets.DECLENCHEUR_TOKEN }}
+          SCHED: ${{ github.event.schedule }}
+          QUOI: ${{ inputs.quoi }}
+        run: |
+          case "$SCHED" in
+            '20 5 * * *') QUOI=statistiques ;;
+            '15 4,16 * * *') QUOI=fabrication ;;
+            '2 5-20 * * *') QUOI=publication ;;
+          esac
+          api=https://api.github.com/repos/noahleflem0-web/usine-tiktok/actions/workflows
+          case "$QUOI" in
+            statistiques) url=$api/usine.yml/dispatches; body='{"ref":"main","inputs":{"task":"stats"}}' ;;
+            fabrication) url=$api/fabrication.yml/dispatches; body='{"ref":"main"}' ;;
+            *) url=$api/usine.yml/dispatches; body='{"ref":"main","inputs":{"task":"publish"}}' ;;
+          esac
+          code=$(curl -s -o /dev/stderr -w '%{http_code}' -X POST -H "Authorization: Bearer $TOKEN" -H 'Accept: application/vnd.github+json' "$url" -d "$body")
+          echo "Passage « $QUOI » demandé : HTTP $code"
+          [ "$code" = 204 ]
