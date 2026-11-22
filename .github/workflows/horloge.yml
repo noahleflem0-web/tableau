@@ -36,6 +36,7 @@ jobs:
               case "$h:$m" in 07:02|12:32|18:02|18:32|19:02|19:32|20:02) lancer usine.yml '{"ref":"main","inputs":{"task":"publish"}}'; fait=$cle;; esac   # créneaux de publication + 2 min
               if [ "$h:$m" = "06:20" ]; then lancer usine.yml '{"ref":"main","inputs":{"task":"stats"}}'; fait=$cle; fi
               if [ "$m" = "15" ] && { [ "$h" = "05" ] || [ "$h" = "11" ] || [ "$h" = "17" ] || [ "$h" = "23" ]; }; then lancer fabrication.yml '{"ref":"main"}'; fait=$cle; fi
+              if [ "$h:$m" = "04:00" ]; then lancer constructeur.yml '{"ref":"main"}'; fait=$cle; fi   # constructeur de styles, chaque jour
             fi
             sleep 20
           done
